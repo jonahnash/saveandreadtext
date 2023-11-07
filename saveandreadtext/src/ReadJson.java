@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 // video to load jar
@@ -22,12 +23,13 @@ import org.json.simple.parser.ParseException;
             JSONObject file = new JSONObject();
             file.put("Full Name", "Ritu Sharma");
             file.put("Roll No.", new Integer(1704310046));
-            file.put("Tution Fees", new Double(65400));
+            file.put("Tuition Fees", new Double(65400));
 
 
             // To print in JSON format.
-            System.out.print(file.get("Tution Fees"));
+            System.out.print(file.get("Tuition Fees"));
             pull();
+            System.out.print(file.get("name"));
 
         }
 

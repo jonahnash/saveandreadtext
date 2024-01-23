@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -100,7 +101,7 @@ public class SpoonacularAPI {
 
     }
     public static void pullMood() throws ParseException{
-        String apiKey = "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";
+        String apiKey = "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";
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your mood");
         String moodInput = scanner.next();
@@ -167,7 +168,14 @@ public class SpoonacularAPI {
         //System.out.println(str);
         org.json.simple.JSONObject jsonObject = (org.json.simple.JSONObject) parser.parse(totalJson);
         try {
-            System.out.println(jsonObject);
+            //System.out.println(jsonObject);
+            JSONArray choices = (JSONArray) jsonObject.get("choices");
+            //System.out.println(choices);
+            JSONObject ch = (JSONObject) choices.get(0);
+            //System.out.println(ch);
+            JSONObject message = (JSONObject) ch.get("message");
+            String content = (String) message.get("content");
+            System.out.println(content);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -247,9 +255,9 @@ public class SpoonacularAPI {
         }
     }
     public static void pullDescription() throws ParseException{
+        String apiKey = "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";
         String output = "";
         String totalJson = "";
-        String apiKey = "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";
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your which recipe would you like to learn more about?");
         int chosenRecipe = scanner.nextInt();
@@ -283,6 +291,7 @@ public class SpoonacularAPI {
                 //System.out.println(output);
                 totalJson+=output;
             }
+            //System.out.println(totalJson);
             String line;
             String response = "";
 
@@ -308,7 +317,12 @@ public class SpoonacularAPI {
         org.json.simple.JSONObject jsonObject = (org.json.simple.JSONObject) parser.parse(totalJson);
         try {
             //System.out.println(jsonObject);
-            String content = (String) jsonObject.get("content");
+            JSONArray choices = (JSONArray) jsonObject.get("choices");
+            //System.out.println(choices);
+            JSONObject ch = (JSONObject) choices.get(0);
+            //System.out.println(ch);
+            JSONObject message = (JSONObject) ch.get("message");
+            String content = (String) message.get("content");
             System.out.println(content);
         }
         catch (Exception e){
